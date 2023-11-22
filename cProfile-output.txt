@@ -1,0 +1,131 @@
+        2461 function calls (2457 primitive calls) in 24.487 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        3    0.000    0.000    0.000    0.000 <frozen _collections_abc>:315(__subclasshook__)
+        1    0.000    0.000    0.000    0.000 <frozen abc>:117(__instancecheck__)
+      3/1    0.000    0.000    0.000    0.000 <frozen abc>:121(__subclasscheck__)
+        1    0.000    0.000   24.487   24.487 <string>:1(<module>)
+       52    0.000    0.000    0.000    0.000 base.py:16(__init__)
+       86    0.000    0.000    0.000    0.000 base.py:46(get_index)
+        1    0.000    0.000    0.000    0.000 dealer.py:11(shuffle)
+        9    0.000    0.000    0.000    0.000 dealer.py:14(deal_card)
+        1    0.000    0.000    0.000    0.000 dealer.py:5(__init__)
+        1    0.000    0.000   22.071   22.071 env.py:120(run)
+        1    0.000    0.000    0.000    0.000 env.py:136(<listcomp>)
+       10    0.000    0.000    0.000    0.000 env.py:171(is_over)
+        9    0.000    0.000    0.000    0.000 env.py:179(get_player_id)
+        2    0.000    0.000    0.000    0.000 env.py:188(get_state)
+        1    0.000    0.000    0.000    0.000 env.py:52(reset)
+        9    0.000    0.000    0.002    0.000 env.py:65(step)
+        1    0.000    0.000    0.000    0.000 game.py:101(<listcomp>)
+        9    0.000    0.000    0.001    0.000 game.py:105(step)
+        9    0.000    0.000    0.000    0.000 game.py:190(get_player_id)
+       12    0.000    0.000    0.001    0.000 game.py:199(get_state)
+       12    0.000    0.000    0.000    0.000 game.py:209(<listcomp>)
+       19    0.000    0.000    0.000    0.000 game.py:216(is_over)
+       19    0.000    0.000    0.000    0.000 game.py:223(<listcomp>)
+        1    0.000    0.000    0.002    0.002 game.py:233(get_payoffs)
+        1    0.000    0.000    0.000    0.000 game.py:240(<listcomp>)
+       13    0.000    0.000    0.000    0.000 game.py:245(get_legal_actions)
+        1    0.000    0.000    0.000    0.000 game.py:46(init_game)
+        1    0.000    0.000    0.000    0.000 game.py:62(<listcomp>)
+        1    0.000    0.000    0.000    0.000 game.py:90(<listcomp>)
+        1    0.000    0.000    0.002    0.002 judger.py:11(judge_game)
+        1    0.000    0.000    0.000    0.000 judger.py:23(<listcomp>)
+        1    0.000    0.000    0.000    0.000 judger.py:27(<listcomp>)
+        1    0.000    0.000    0.000    0.000 judger.py:36(split_pot_among_players)
+        3    0.000    0.000    0.000    0.000 judger.py:48(<genexpr>)
+        3    0.000    0.000    0.000    0.000 judger.py:49(<genexpr>)
+        3    0.000    0.000    0.000    0.000 judger.py:55(<genexpr>)
+        3    0.000    0.000    0.000    0.000 judger.py:75(<genexpr>)
+        1    0.000    0.000    0.000    0.000 judger.py:78(split_pots_among_players)
+        1    0.000    0.000    0.000    0.000 judger.py:8(__init__)
+        3    0.000    0.000    0.000    0.000 judger.py:91(<genexpr>)
+        5    0.000    0.000    0.000    0.000 judger.py:94(<genexpr>)
+        3    0.000    0.000    0.000    0.000 judger.py:97(<genexpr>)
+        9    0.000    0.000   22.066    2.452 limit_holdem_human_agent.py:17(step)
+        9    0.000    0.000   22.066    2.452 limit_holdem_human_agent.py:34(eval_step)
+        9    0.000    0.000    0.005    0.001 limit_holdem_human_agent.py:45(_print_state)
+        9    0.000    0.000    0.000    0.000 limit_holdem_human_agent.py:71(<listcomp>)
+        1    0.000    0.000    0.000    0.000 limitholdem.py:105(<listcomp>)
+        1    0.000    0.000    0.000    0.000 limitholdem.py:106(<listcomp>)
+        1    0.000    0.000    0.000    0.000 limitholdem.py:107(<listcomp>)
+       12    0.001    0.000    0.001    0.000 limitholdem.py:40(_extract_state)
+       12    0.000    0.000    0.000    0.000 limitholdem.py:53(<dictcomp>)
+       12    0.000    0.000    0.000    0.000 limitholdem.py:60(<listcomp>)
+       12    0.000    0.000    0.000    0.000 limitholdem.py:68(<listcomp>)
+        1    0.000    0.000    0.002    0.002 limitholdem.py:73(get_payoffs)
+        1    0.000    0.000    0.000    0.000 limitholdem.py:98(get_perfect_information)
+        2    0.000    0.000    0.000    0.000 player.py:12(__init__)
+       12    0.000    0.000    0.000    0.000 player.py:27(get_state)
+       12    0.000    0.000    0.000    0.000 player.py:39(<listcomp>)
+       12    0.000    0.000    0.000    0.000 player.py:40(<listcomp>)
+        9    0.000    0.000    0.000    0.000 round.py:118(is_over)
+        1    0.000    0.000    0.000    0.000 round.py:32(<listcomp>)
+        5    0.000    0.000    0.000    0.000 round.py:35(start_new_round)
+        4    0.000    0.000    0.000    0.000 round.py:51(<listcomp>)
+        9    0.000    0.000    0.000    0.000 round.py:53(proceed_round)
+        1    0.000    0.000    0.000    0.000 round.py:8(__init__)
+       22    0.000    0.000    0.000    0.000 round.py:95(get_legal_actions)
+        1    0.000    0.000   24.487   24.487 testin.tree.py:29(main)
+       19    0.001    0.000    0.003    0.000 utils.py:101(print_card)
+        4    0.000    0.000    0.000    0.000 utils.py:110(_getflush_cards)
+       19    0.000    0.000    0.000    0.000 utils.py:112(<listcomp>)
+        4    0.000    0.000    0.000    0.000 utils.py:125(_has_flush)
+        4    0.000    0.000    0.000    0.000 utils.py:137(_has_straight)
+        4    0.000    0.000    0.000    0.000 utils.py:150(_get_different_rank_list)
+        4    0.000    0.000    0.000    0.000 utils.py:166(_get_straight_cards)
+        4    0.000    0.000    0.000    0.000 utils.py:172(<listcomp>)
+        4    0.000    0.000    0.000    0.000 utils.py:18(<dictcomp>)
+        4    0.000    0.000    0.000    0.000 utils.py:184(_getcards_by_rank)
+        4    0.000    0.000    0.000    0.000 utils.py:22(get_hand_five_cards)
+        4    0.000    0.000    0.000    0.000 utils.py:233(_has_four)
+        4    0.000    0.000    0.000    0.000 utils.py:245(_has_fullhouse)
+        4    0.000    0.000    0.000    0.000 utils.py:257(_has_three)
+        4    0.000    0.000    0.000    0.000 utils.py:269(_has_two_pairs)
+        4    0.000    0.000    0.000    0.000 utils.py:30(_sort_cards)
+        1    0.000    0.000    0.000    0.000 utils.py:31(init_standard_deck)
+       28    0.000    0.000    0.000    0.000 utils.py:35(<lambda>)
+        4    0.000    0.000    0.000    0.000 utils.py:363(_get_Two_Pair_cards)
+        4    0.000    0.000    0.001    0.000 utils.py:37(evaluateHand)
+        1    0.000    0.000    0.000    0.000 utils.py:39(<listcomp>)
+        4    0.000    0.000    0.000    0.000 utils.py:4(__init__)
+        2    0.000    0.000    0.000    0.000 utils.py:409(compare_ranks)
+        1    0.000    0.000    0.000    0.000 utils.py:449(determine_winner)
+        1    0.000    0.000    0.001    0.001 utils.py:526(compare_hands)
+        1    0.000    0.000    0.000    0.000 utils.py:567(<listcomp>)
+        1    0.000    0.000    0.001    0.001 utils.py:571(final_compare)
+        4    0.000    0.000    0.000    0.000 utils.py:86(_has_straight_flush)
+       44    0.000    0.000    0.000    0.000 utils.py:87(elegent_form)
+        1    0.000    0.000    0.000    0.000 {built-in method _abc._abc_instancecheck}
+      3/1    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.all}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.any}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.divmod}
+        1    0.000    0.000   24.487   24.487 {built-in method builtins.exec}
+       10   24.476    2.448   24.476    2.448 {built-in method builtins.input}
+       63    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+      131    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+       60    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+      387    0.003    0.000    0.003    0.000 {built-in method builtins.print}
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.sorted}
+       30    0.000    0.000    0.000    0.000 {built-in method builtins.sum}
+        1    0.000    0.000    0.000    0.000 {built-in method numpy.array}
+       13    0.000    0.000    0.000    0.000 {built-in method numpy.zeros}
+      514    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+       16    0.000    0.000    0.000    0.000 {method 'count' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+      133    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+       36    0.000    0.000    0.000    0.000 {method 'index' of 'list' objects}
+       60    0.000    0.000    0.000    0.000 {method 'index' of 'str' objects}
+       67    0.000    0.000    0.000    0.000 {method 'insert' of 'list' objects}
+        4    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+      184    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+       21    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'randint' of 'numpy.random.mtrand.RandomState' objects}
+       22    0.000    0.000    0.000    0.000 {method 'remove' of 'list' objects}
+        4    0.000    0.000    0.000    0.000 {method 'reverse' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'shuffle' of 'numpy.random.mtrand.RandomState' objects}

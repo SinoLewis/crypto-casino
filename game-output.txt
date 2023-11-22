@@ -1,0 +1,306 @@
+>> Start a new game
+
+=============== Community Card ===============
+
+
+
+
+
+
+
+
+
+=============  Player 0 - Hand   =============
+┌─────────┐   ┌─────────┐
+│8        │   │K        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        8│   │        K│
+└─────────┘   └─────────┘
+===============     Chips      ===============
+In Pot: 3
+Remaining: [99, 98]
+
+=========== Actions You Can Choose ===========
+0: Action.FOLD, 1: Action.CHECK_CALL, 2: Action.RAISE_POT, 3: Action.ALL_IN
+
+{'hand': ['S8', 'HK'], 'public_cards': [], 'all_chips': [1, 2], 'my_chips': 1, 'legal_actions': [<Action.FOLD: 0>, <Action.CHECK_CALL: 1>, <Action.RAISE_POT: 3>, <Action.ALL_IN: 4>], 'stakes': [99, 98], 'current_player': 0, 'pot': 3, 'stage': <Stage.PREFLOP: 0>}
+>> You choose action (integer): 2
+>> Player 0 chooses Action.RAISE_POT
+
+=============== Community Card ===============
+
+
+
+
+
+
+
+
+
+=============  Player 1 - Hand   =============
+┌─────────┐   ┌─────────┐
+│J        │   │3        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        J│   │        3│
+└─────────┘   └─────────┘
+===============     Chips      ===============
+In Pot: 6
+Remaining: [96, 98]
+
+=========== Actions You Can Choose ===========
+0: Action.FOLD, 1: Action.CHECK_CALL, 2: Action.RAISE_HALF_POT, 3: Action.RAISE_POT, 4: Action.ALL_IN
+
+{'hand': ['SJ', 'H3'], 'public_cards': [], 'all_chips': [4, 2], 'my_chips': 2, 'legal_actions': [<Action.FOLD: 0>, <Action.CHECK_CALL: 1>, <Action.RAISE_HALF_POT: 2>, <Action.RAISE_POT: 3>, <Action.ALL_IN: 4>], 'stakes': [96, 98], 'current_player': 1, 'pot': 6, 'stage': <Stage.PREFLOP: 0>}
+>> You choose action (integer): 1
+>> Player 1 chooses Action.CHECK_CALL
+
+=============== Community Card ===============
+┌─────────┐   ┌─────────┐   ┌─────────┐
+│9        │   │A        │   │A        │
+│         │   │         │   │         │
+│         │   │         │   │         │
+│    ♦    │   │    ♠    │   │    ♣    │
+│         │   │         │   │         │
+│         │   │         │   │         │
+│        9│   │        A│   │        A│
+└─────────┘   └─────────┘   └─────────┘
+=============  Player 0 - Hand   =============
+┌─────────┐   ┌─────────┐
+│8        │   │K        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        8│   │        K│
+└─────────┘   └─────────┘
+===============     Chips      ===============
+In Pot: 8
+Remaining: [96, 96]
+
+=========== Actions You Can Choose ===========
+0: Action.FOLD, 1: Action.CHECK_CALL, 2: Action.RAISE_HALF_POT, 3: Action.RAISE_POT, 4: Action.ALL_IN
+
+{'hand': ['S8', 'HK'], 'public_cards': ['D9', 'SA', 'CA'], 'all_chips': [4, 4], 'my_chips': 4, 'legal_actions': [<Action.FOLD: 0>, <Action.CHECK_CALL: 1>, <Action.RAISE_HALF_POT: 2>, <Action.RAISE_POT: 3>, <Action.ALL_IN: 4>], 'stakes': [96, 96], 'current_player': 0, 'pot': 8, 'stage': <Stage.FLOP: 1>}
+>> You choose action (integer): 1
+>> Player 0 chooses Action.CHECK_CALL
+
+=============== Community Card ===============
+┌─────────┐   ┌─────────┐   ┌─────────┐
+│9        │   │A        │   │A        │
+│         │   │         │   │         │
+│         │   │         │   │         │
+│    ♦    │   │    ♠    │   │    ♣    │
+│         │   │         │   │         │
+│         │   │         │   │         │
+│        9│   │        A│   │        A│
+└─────────┘   └─────────┘   └─────────┘
+=============  Player 1 - Hand   =============
+┌─────────┐   ┌─────────┐
+│J        │   │3        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        J│   │        3│
+└─────────┘   └─────────┘
+===============     Chips      ===============
+In Pot: 8
+Remaining: [96, 96]
+
+=========== Actions You Can Choose ===========
+0: Action.FOLD, 1: Action.CHECK_CALL, 2: Action.RAISE_HALF_POT, 3: Action.RAISE_POT, 4: Action.ALL_IN
+
+{'hand': ['SJ', 'H3'], 'public_cards': ['D9', 'SA', 'CA'], 'all_chips': [4, 4], 'my_chips': 4, 'legal_actions': [<Action.FOLD: 0>, <Action.CHECK_CALL: 1>, <Action.RAISE_HALF_POT: 2>, <Action.RAISE_POT: 3>, <Action.ALL_IN: 4>], 'stakes': [96, 96], 'current_player': 1, 'pot': 8, 'stage': <Stage.FLOP: 1>}
+>> You choose action (integer): 2
+>> Player 1 chooses Action.RAISE_HALF_POT
+
+=============== Community Card ===============
+┌─────────┐   ┌─────────┐   ┌─────────┐
+│9        │   │A        │   │A        │
+│         │   │         │   │         │
+│         │   │         │   │         │
+│    ♦    │   │    ♠    │   │    ♣    │
+│         │   │         │   │         │
+│         │   │         │   │         │
+│        9│   │        A│   │        A│
+└─────────┘   └─────────┘   └─────────┘
+=============  Player 0 - Hand   =============
+┌─────────┐   ┌─────────┐
+│8        │   │K        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        8│   │        K│
+└─────────┘   └─────────┘
+===============     Chips      ===============
+In Pot: 12
+Remaining: [96, 92]
+
+=========== Actions You Can Choose ===========
+0: Action.FOLD, 1: Action.CHECK_CALL, 2: Action.RAISE_HALF_POT, 3: Action.RAISE_POT, 4: Action.ALL_IN
+
+{'hand': ['S8', 'HK'], 'public_cards': ['D9', 'SA', 'CA'], 'all_chips': [4, 8], 'my_chips': 4, 'legal_actions': [<Action.FOLD: 0>, <Action.CHECK_CALL: 1>, <Action.RAISE_HALF_POT: 2>, <Action.RAISE_POT: 3>, <Action.ALL_IN: 4>], 'stakes': [96, 92], 'current_player': 0, 'pot': 12, 'stage': <Stage.FLOP: 1>}
+>> You choose action (integer): 1
+
+=============== Community Card ===============
+┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
+│9        │   │A        │   │A        │   │10       │
+│         │   │         │   │         │   │         │
+│         │   │         │   │         │   │         │
+│    ♦    │   │    ♠    │   │    ♣    │   │    ♣    │
+│         │   │         │   │         │   │         │
+│         │   │         │   │         │   │         │
+│        9│   │        A│   │        A│   │       01│
+└─────────┘   └─────────┘   └─────────┘   └─────────┘
+=============  Player 0 - Hand   =============
+┌─────────┐   ┌─────────┐
+│8        │   │K        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        8│   │        K│
+└─────────┘   └─────────┘
+===============     Chips      ===============
+In Pot: 16
+Remaining: [92, 92]
+
+=========== Actions You Can Choose ===========
+0: Action.FOLD, 1: Action.CHECK_CALL, 2: Action.RAISE_HALF_POT, 3: Action.RAISE_POT, 4: Action.ALL_IN
+
+{'hand': ['S8', 'HK'], 'public_cards': ['D9', 'SA', 'CA', 'CT'], 'all_chips': [8, 8], 'my_chips': 8, 'legal_actions': [<Action.FOLD: 0>, <Action.CHECK_CALL: 1>, <Action.RAISE_HALF_POT: 2>, <Action.RAISE_POT: 3>, <Action.ALL_IN: 4>], 'stakes': [92, 92], 'current_player': 0, 'pot': 16, 'stage': <Stage.TURN: 2>}
+>> You choose action (integer): 1
+>> Player 0 chooses Action.CHECK_CALL
+>> Player 0 chooses Action.CHECK_CALL
+
+=============== Community Card ===============
+┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
+│9        │   │A        │   │A        │   │10       │
+│         │   │         │   │         │   │         │
+│         │   │         │   │         │   │         │
+│    ♦    │   │    ♠    │   │    ♣    │   │    ♣    │
+│         │   │         │   │         │   │         │
+│         │   │         │   │         │   │         │
+│        9│   │        A│   │        A│   │       01│
+└─────────┘   └─────────┘   └─────────┘   └─────────┘
+=============  Player 1 - Hand   =============
+┌─────────┐   ┌─────────┐
+│J        │   │3        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        J│   │        3│
+└─────────┘   └─────────┘
+===============     Chips      ===============
+In Pot: 16
+Remaining: [92, 92]
+
+=========== Actions You Can Choose ===========
+0: Action.FOLD, 1: Action.CHECK_CALL, 2: Action.RAISE_HALF_POT, 3: Action.RAISE_POT, 4: Action.ALL_IN
+
+{'hand': ['SJ', 'H3'], 'public_cards': ['D9', 'SA', 'CA', 'CT'], 'all_chips': [8, 8], 'my_chips': 8, 'legal_actions': [<Action.FOLD: 0>, <Action.CHECK_CALL: 1>, <Action.RAISE_HALF_POT: 2>, <Action.RAISE_POT: 3>, <Action.ALL_IN: 4>], 'stakes': [92, 92], 'current_player': 1, 'pot': 16, 'stage': <Stage.TURN: 2>}
+>> You choose action (integer): 1
+>> Player 1 chooses Action.CHECK_CALL
+
+=============== Community Card ===============
+┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
+│9        │   │A        │   │A        │   │10       │   │A        │
+│         │   │         │   │         │   │         │   │         │
+│         │   │         │   │         │   │         │   │         │
+│    ♦    │   │    ♠    │   │    ♣    │   │    ♣    │   │    ♦    │
+│         │   │         │   │         │   │         │   │         │
+│         │   │         │   │         │   │         │   │         │
+│        9│   │        A│   │        A│   │       01│   │        A│
+└─────────┘   └─────────┘   └─────────┘   └─────────┘   └─────────┘
+=============  Player 0 - Hand   =============
+┌─────────┐   ┌─────────┐
+│8        │   │K        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        8│   │        K│
+└─────────┘   └─────────┘
+===============     Chips      ===============
+In Pot: 16
+Remaining: [92, 92]
+
+=========== Actions You Can Choose ===========
+0: Action.FOLD, 1: Action.CHECK_CALL, 2: Action.RAISE_HALF_POT, 3: Action.RAISE_POT, 4: Action.ALL_IN
+
+{'hand': ['S8', 'HK'], 'public_cards': ['D9', 'SA', 'CA', 'CT', 'DA'], 'all_chips': [8, 8], 'my_chips': 8, 'legal_actions': [<Action.FOLD: 0>, <Action.CHECK_CALL: 1>, <Action.RAISE_HALF_POT: 2>, <Action.RAISE_POT: 3>, <Action.ALL_IN: 4>], 'stakes': [92, 92], 'current_player': 0, 'pot': 16, 'stage': <Stage.RIVER: 3>}
+>> You choose action (integer): 2
+>> Player 0 chooses Action.RAISE_HALF_POT
+
+=============== Community Card ===============
+┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
+│9        │   │A        │   │A        │   │10       │   │A        │
+│         │   │         │   │         │   │         │   │         │
+│         │   │         │   │         │   │         │   │         │
+│    ♦    │   │    ♠    │   │    ♣    │   │    ♣    │   │    ♦    │
+│         │   │         │   │         │   │         │   │         │
+│         │   │         │   │         │   │         │   │         │
+│        9│   │        A│   │        A│   │       01│   │        A│
+└─────────┘   └─────────┘   └─────────┘   └─────────┘   └─────────┘
+=============  Player 1 - Hand   =============
+┌─────────┐   ┌─────────┐
+│J        │   │3        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        J│   │        3│
+└─────────┘   └─────────┘
+===============     Chips      ===============
+In Pot: 24
+Remaining: [84, 92]
+
+=========== Actions You Can Choose ===========
+0: Action.FOLD, 1: Action.CHECK_CALL, 2: Action.RAISE_HALF_POT, 3: Action.RAISE_POT, 4: Action.ALL_IN
+
+{'hand': ['SJ', 'H3'], 'public_cards': ['D9', 'SA', 'CA', 'CT', 'DA'], 'all_chips': [16, 8], 'my_chips': 8, 'legal_actions': [<Action.FOLD: 0>, <Action.CHECK_CALL: 1>, <Action.RAISE_HALF_POT: 2>, <Action.RAISE_POT: 3>, <Action.ALL_IN: 4>], 'stakes': [84, 92], 'current_player': 1, 'pot': 24, 'stage': <Stage.RIVER: 3>}
+>> You choose action (integer): 1
+DEBGUG: SwimPOOLS
+>> Player 1 chooses Action.CHECK_CALL
+DEBGUG: SwimPOOLS
+===============     Cards all Players    ===============
+┌─────────┐   ┌─────────┐
+│8        │   │K        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        8│   │        K│
+└─────────┘   └─────────┘
+DEBGUG: SwimPOOLS
+┌─────────┐   ┌─────────┐
+│J        │   │3        │
+│         │   │         │
+│         │   │         │
+│    ♠    │   │    ♥    │
+│         │   │         │
+│         │   │         │
+│        J│   │        3│
+└─────────┘   └─────────┘
+DEBGUG: SwimPOOLS
+===============     Result     ===============
+You win 16 chips!
+DEBGUG: SwimPOOLS

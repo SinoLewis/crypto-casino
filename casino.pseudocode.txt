@@ -1,0 +1,64 @@
+# Limit Holder Card Game Pseudocode (Form ChatGPT)
+
+# Define constants
+NUM_PLAYERS = 2
+INITIAL_CHIPS = 100
+SMALL_BLIND = 5
+BIG_BLIND = 10
+
+# Initialize players and their chip counts
+player1_chips = INITIAL_CHIPS
+player2_chips = INITIAL_CHIPS
+
+# Function to deal cards
+function deal_cards():
+    # Code to shuffle and distribute cards to players
+
+# Function to handle betting
+function betting_round(current_player, current_bet):
+    # Code for betting logic
+    # Update player chip counts based on bets
+
+# Function to evaluate the winner
+function determine_winner():
+    # Code to compare hands and determine the winner
+    # Update player chip counts accordingly
+
+# Main game loop
+while True:
+    # Start a new round
+    deal_cards()
+
+    # Betting round 1
+    betting_round(player1, SMALL_BLIND)
+    betting_round(player2, BIG_BLIND)
+
+    # Flop - Deal first three community cards
+    deal_flop()
+
+    # Betting round 2
+    betting_round(player1, 0)
+    betting_round(player2, 0)
+
+    # Turn - Deal fourth community card
+    deal_turn()
+
+    # Betting round 3
+    betting_round(player1, 0)
+    betting_round(player2, 0)
+
+    # River - Deal fifth community card
+    deal_river()
+
+    # Betting round 4
+    betting_round(player1, 0)
+    betting_round(player2, 0)
+
+    # Determine the winner
+    determine_winner()
+
+    # Check if any player is out of chips
+    if player1_chips <= 0 or player2_chips <= 0:
+        break
+
+# End of game
