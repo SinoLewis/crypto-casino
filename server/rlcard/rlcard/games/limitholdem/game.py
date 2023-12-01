@@ -8,10 +8,13 @@ from rlcard.games.limitholdem import Round
 
 
 class LimitHoldemGame:
-    def __init__(self, allow_step_back=False, num_players=2):
+    def __init__(self, allow_step_back=False, num_players=2, random_seed=94290741):
         """Initialize the class limit holdem game"""
         self.allow_step_back = allow_step_back
-        self.np_random = np.random.RandomState()
+        self.random_seed = random_seed
+        print(f"RANDOM SEED :{random_seed} \n")
+        self.np_random = np.random.RandomState(seed=random_seed)
+        # self.np_random = np.random.RandomState()
 
         # Some configurations of the game
         # These arguments can be specified for creating new games
