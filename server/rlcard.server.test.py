@@ -8,21 +8,13 @@ import sys
 load_dotenv()
 sys.path.append(os.getenv("RLCARD_DEV"))
 from rlcard.games.limitholdem.game import LimitHoldemGame as Game
+from supabase import create_client, Client
 
+url: str = os.environ.get("SUPABASE_URL")
+key: str = os.environ.get("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
 
-# 1. Create Peristent game API handler
-    # 1.1. Enum State in DB (the class main return data type)
-        # 1. Seed int must be unique to a unique game uuid
-        # 2. move Player.game_id from Game.players_ids: int[]
-        # 3. move Round.game_id from Round.round_ids: int[]
-        # 4. is_over: bool
-    # 1.2. Supa Auth CRUD DB's actions handlers where needed
-        # 1. get_current_player
-    # 1.3 (PASS) Test if same Game object are equal to duplicate obj of unique seed
-# 2. Create Rel DB's of games instance objects
-    # 2.1. Each DB w/ Relation to Game DB and other same child DB's
-    # 2.2. Enum State & Auth CRUD DB's actions where needed
-    # 2.3. Test if same Game child Objects are equal to duplicate obj of unique seed
+app = Flask(__name__)
 
 def get_random_seed():
     # Minimum and maximum seed values
@@ -32,31 +24,100 @@ def get_random_seed():
     random_seed = np.random.randint(min_seed, max_seed)
     return random_seed
 
-random_seed = get_random_seed()
-print(f"BEFORE RAND SEED: {random_seed}")
+# @app.route('/game/limitholdem>', methods=['POST'])
+def createGame():
+    game = Game(num_players=request.json['num_players'])
+    state, current_player = game.init_game()
 
-def get_current_player(seed):
-    game = Game(random_seed=seed)
-    game.configure({'game_num_players' : 9})
+    response = supabase.table('limitholdem').insert({
+        "seed": get_random_seed(),
+        "current_player_id": current_player,
+        "small_blind": game.small_blind,
+        "is_over": game.is_over(),
+        "payoffs": game.get_payoffs()
+        "allowed_raise_num": game.allowed_raise_num,
+        "num_actions": game.get_num_actions()
+        "num_players": game.num_players
+        }
+    ).execute()
 
-    state, current_player = game.init_game() #<class 'dict'>
 
-    print(f"{current_player}' nth Player State:\n")
-    pprint(state)
+    game_data = response["data"][0]
+    
+    player_data = []
+    for player, index in enumerate(game.players):
+        state = game.get_state(player.player_id)
+        response = supabase.table('player').insert({
+            "player_id": player.player_id,
+            "status": player.status.value,
+            "game_uuid": game_data["id"],
+            "my_chips": state['my_chips'],
+            "hand": state['hand'],
+            "public_cards": state['public_cards'],
+            "all_chips": state['all_chips'],
+            "legal_actions": state['legal_actions'],        
+        }).execute()   
+        
+        player_data.insert(index, response["data"][0])
 
-def test_same_obj(seed):
-    get_current_player(seed)
-    get_current_player(seed)
+    
+    round_data = supabase.table('round').insert({
+        "game_uuid": game.id,
+        "player_folded": game.round.player_folded,
+        "have_raised": game.round.have_raised,
+        "not_raise_num": game.round.not_raise_num,
+        "raised": game.round.raised
 
-# API: Get current player from game seed
+    return jsonify({"game" : game_data, "players" : player_data, "round" : round})
+
+# @app.route('/game/limitholdem/<int:game_id>')
+def getGame(game_id):
+    game_data = supabase.table('limitholdem').select("*").eq('id', game_id).execute()
+    players_data = supabase.table('player').select("*").eq('game_id', game_id).execute()
+    round_data = supabase.table('round').select("*").eq('game_id', game_id).execute()
+
+    return jsonify({"game" : game_data, "players" : player_data, "round" : round})
+
+# @app.route('/game/limitholdem', methods=['PUT'])
+def updateGame():
+    game_id = request.json['id']
+    action = request.json['action']
+
+    game_data = supabase.table('limitholdem').select("*").eq('id', game_id).execute()
+    players_data = supabase.table('player').select("*").eq('game_id', game_id).execute()
+    round_data = supabase.table('round').select("*").eq('game_id', game_id).execute()
+
+    game = Game(num_players=game.num_players, random_seed=game_data['seed'])
+    state, current_player = game.init_game()
+
+    game.game_pointer = game_data['current_player_id']
+    game.small_blind = game_data['small_blind']
+    game.big_blind = game.small_blind * 2
+    
+    return jsonify()
+
+if __name__ == '__main__':
+    print("RLCard Server starting...")
+    app.run(debug=True)
+
+# def get_current_player(seed):
+#     game = Game(random_seed=seed)
+#     game.configure({'game_num_players' : 9})
+
+#     state, current_player = game.init_game() #<class 'dict'>
+
+#     print(f"{current_player}' nth Player State:\n")
+#     pprint(state)
+
+# def test_same_obj(seed):
+#     get_current_player(seed)
+#     get_current_player(seed)
+
+# TEST: Get current player from game seed
 # get_current_player(random_seed)
 
 # TEST: Check two same objects current player
-test_same_obj(random_seed)
-
-
-
-# app = Flask(__name__)
+# test_same_obj(random_seed)
 
 # @app.route('/')
 # def hello_world():
@@ -67,8 +128,3 @@ test_same_obj(random_seed)
 #     data = request.get_json()
 #     # Do something with the data (e.g., process it, return a response)
 #     return jsonify({'message': 'Data received successfully'})
-
-
-# if __name__ == '__main__':
-#     print("RLCard Server starting...")
-#     app.run(debug=True)
