@@ -8,11 +8,10 @@ from rlcard.games.limitholdem import Round
 
 
 class LimitHoldemGame:
-    def __init__(self, allow_step_back=False, num_players=2, random_seed=94290741):
+    def __init__(self, random_seed, allow_step_back=False, num_players=2, small_blind=1):
         """Initialize the class limit holdem game"""
         self.allow_step_back = allow_step_back
         self.random_seed = random_seed
-        print(f"RANDOM SEED :{random_seed} \n")
         self.np_random = np.random.RandomState(seed=random_seed)
         # self.np_random = np.random.RandomState()
 
@@ -20,7 +19,7 @@ class LimitHoldemGame:
         # These arguments can be specified for creating new games
 
         # Small blind and big blind
-        self.small_blind = 1
+        self.small_blind = small_blind
         self.big_blind = 2 * self.small_blind
 
         # Raise amount and allowed times
@@ -42,9 +41,27 @@ class LimitHoldemGame:
         self.history = None
         self.history_raises_nums = None
 
-    def configure(self, game_config):
+    def configure(self, game, players, round):
         """Specify some game specific parameters, such as number of players"""
-        self.num_players = game_config['game_num_players']
+        # self.num_players = game_config['game_num_players']
+        self.game_pointer = game['current_player_id']
+        self.history_raise_nums = game['history_raise_nums']
+        self.public_cards = game['public_cards']
+        
+        self.round.have_raised = round['have_raised']
+        self.round.not_raise_num = round['not_raise_num']
+        self.round.raised = round['raised']
+        self.round.player_folded = round['player_folded']
+
+        # TODO: ERROR:
+        # File "/workspaces/crypto-casino/server/rlcard/rlcard/games/limitholdem/game.py", line 59, in configure
+        # self.players[player.player_id].player_id = player.player_id
+        # AttributeError: 'dict' object has no attribute 'player_id' 
+        for index, player in enumerate(players):
+            # self.players[player.player_id].hand = player.hand   
+            self.players[player.player_id].player_id = player.player_id   
+            self.players[player.player_id].status = PlayerStatus(player.status)   
+            self.players[player.player_id].in_chips = player.my_chips   
 
     def init_game(self):
         """

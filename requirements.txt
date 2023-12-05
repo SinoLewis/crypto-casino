@@ -1,0 +1,5 @@
+flask=3.0.0
+python-dotenv=1.0.0
+numpy=1.26.2
+supabase=2.2.0
+termcolor=2.4.0
