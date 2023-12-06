@@ -27,74 +27,73 @@ def get_random_seed():
     random_seed = np.random.randint(min_seed, max_seed)
     return random_seed
 
+def updateGameSupa(game, game_uuid=None, update=False):
+    game_data = None
+    data = {
+        "seed": game.random_seed,
+        "current_player_id": game.game_pointer,
+        "small_blind": game.small_blind,
+        "public_cards": game.public_cards,
+        "is_over": game.is_over(),
+        "history_raise_nums": [0 for _ in range(4)],
+        # TODO: If Error return null
+        # "payoffs": game.get_payoffs() if game.get_payoffs() else None,
+        "allowed_raise_num": game.allowed_raise_num,
+        "num_actions": game.get_num_actions(),
+        "num_players": game.num_players,
+    }
+    if update:
+        data["updated_at"] = "now()"
+        game_data = supabase.table('limitholdem').update(data).eq('id', game_uuid).execute()
+    else:
+        game_data = supabase.table("limitholdem").insert(data).execute()
 
-def updatePlayersSupa(game, game_uuid):
+    return game_data.data[0]
+
+def updatePlayersSupa(game, players_db=None, game_uuid=None, update=False):
+    # NB: update False = new record
     players_data = []
     for index, player in enumerate(game.players):
-     
-        state = game.get_state(player.player_id)
-        response = (
-            supabase.table("player")
-            .insert(
-                {
-                    "player_id": player.player_id,
-                    "status": player.status.value,
-                    "game_uuid": game_uuid,
-                    "my_chips": state["my_chips"],
-                    "hand": state["hand"],
-                    "all_chips": state["all_chips"],
-                    "legal_actions": state["legal_actions"],
-                }
-            )
-            .execute()
-        )
+        state = game.get_state(index)
+        data = {
+            "player_id": player.player_id,
+            "status": player.status.value,
+            "game_uuid": game_uuid,
+            "my_chips": state["my_chips"],
+            "hand": state["hand"],
+            "all_chips": state["all_chips"],
+            "legal_actions": state["legal_actions"],
+        }
+        if update:
+            data["updated_at"] = "now()"
+            response = supabase.table('player').update(data).eq('id', players_db[index]['id']).execute()
+        else:
+            data["game_uuid"] = game_uuid
+            response = supabase.table("player").insert(data).execute()
 
         players_data.insert(index, response.data[0])
     return players_data
 
-
-def updateGameSupa(game):
-    game_data = (
-        supabase.table("limitholdem")
-        .insert(
-            {
-                "seed": game.random_seed,
-                "current_player_id": game.game_pointer,
-                "small_blind": game.small_blind,
-                "public_cards": game.public_cards,
-                "is_over": game.is_over(),
-                # TODO: If Error return null
-                # "payoffs": game.get_payoffs() if game.get_payoffs() else None,
-                "allowed_raise_num": game.allowed_raise_num,
-                "num_actions": game.get_num_actions(),
-                "num_players": game.num_players,
-            }
-        )
-        .execute()
-    )
-
-    return game_data.data[0]
-
-
-def updateRoundSupa(game, game_uuid):
-    round_data = (
-        supabase.table("round")
-        .insert(
-            {
-                "game_uuid": game_uuid,
-                "player_folded": game.round.player_folded,
-                "have_raised": game.round.have_raised,
-                "not_raise_num": game.round.not_raise_num,
-                "raised": game.round.raised,
-            }
-        )
-        .execute()
-    )
+def updateRoundSupa(game, game_uuid=None, update=False):
+    round_data = None
+    data = {
+        "game_uuid": game_uuid,
+        "player_folded": game.round.player_folded,
+        "have_raised": game.round.have_raised,
+        "not_raise_num": game.round.not_raise_num,
+        "raised": game.round.raised,
+    }
+    if update:
+        data["updated_at"] = "now()"
+        round_data = supabase.table('round').update(data).eq('game_uuid', game_uuid).execute()
+    else:
+        data["game_uuid"] = game_uuid
+        round_data = supabase.table("round").insert(data).execute()
 
     return round_data.data[0]
 
 
-@app.route('/game/limitholdem', methods=['POST'])
+@app.route("/game/limitholdem", methods=["POST"])
 def createGame():
     game = Game(
         num_players=request.json["num_players"],
@@ -104,16 +103,18 @@ def createGame():
     game.init_game()
 
     game_data = updateGameSupa(game)
-    players_data = updatePlayersSupa(game, game_uuid=game_data["id"])
-    round_data = updateRoundSupa(game, game_uuid=game_data["id"])
+    players_data = updatePlayersSupa(game, game_uuid=game_data['id'])
+    round_data = updateRoundSupa(game, game_uuid=game_data['id'])
 
     return jsonify({"game": game_data, "players": players_data, "round": round_data})
 
 
-@app.route('/game/limitholdem/<string:game_id>', methods=['GET'])
+@app.route("/game/limitholdem/<string:game_id>", methods=["GET"])
 def getGame(game_id):
     game_data = supabase.table("limitholdem").select("*").eq("id", game_id).execute()
-    players_data = supabase.table("player").select("*").eq("game_uuid", game_id).execute()
+    players_data = (
+        supabase.table("player").select("*").eq("game_uuid", game_id).execute()
+    )
     round_data = supabase.table("round").select("*").eq("game_uuid", game_id).execute()
 
     print(round_data.data)
@@ -126,14 +127,20 @@ def getGame(game_id):
     )
 
 
-@app.route('/game/limitholdem', methods=['PUT'])
+@app.route("/game/limitholdem", methods=["PUT"])
 def updateGame():
     game_id = request.json["id"]
     action = request.json["action"]
 
-    game_data = supabase.table("limitholdem").select("*").eq("id", game_id).execute().data[0]
-    players_data = supabase.table("player").select("*").eq("game_uuid", game_id).execute().data
-    round_data = supabase.table("round").select("*").eq("game_uuid", game_id).execute().data[0]
+    game_data = (
+        supabase.table("limitholdem").select("*").eq("id", game_id).execute().data[0]
+    )
+    players_data = (
+        supabase.table("player").select("*").eq("game_uuid", game_id).execute().data
+    )
+    round_data = (
+        supabase.table("round").select("*").eq("game_uuid", game_id).execute().data[0]
+    )
 
     game = Game(
         num_players=game_data["num_players"],
@@ -147,16 +154,12 @@ def updateGame():
         round=round_data,
     )
 
-    # TODO: ERROR: 
-    #  File "/workspaces/crypto-casino/server/rlcard/rlcard/games/limitholdem/game.py", line 150, in step
-    # self.history_raise_nums[self.round_counter] = self.round.have_raised
-    # IndexError: list assignment index out of range 
-    # game.step(action)
+    game.step(action)
 
     # TODO: Supabase Update & Insert logic
-    # game_data = updateGameSupa(game)
-    # players_data = updatePlayersSupa(game, game_uuid=game_data["id"])
-    # round_data = updateRoundSupa(game)
+    game_data = updateGameSupa(game, game_uuid=game_data["id"], update=True)
+    players_data = updatePlayersSupa(game, players_db=players_data, game_uuid=game_data["id"], update=True)
+    round_data = updateRoundSupa(game, game_uuid=game_data["id"], update=True)
 
     return jsonify(
         {
@@ -165,6 +168,7 @@ def updateGame():
             "round": round_data if round_data else None,
         }
     )
+
 
 if __name__ == "__main__":
     print("RLCard Server starting...")

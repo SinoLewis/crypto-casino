@@ -5,6 +5,7 @@ from rlcard.games.limitholdem import Dealer
 from rlcard.games.limitholdem import Player, PlayerStatus
 from rlcard.games.limitholdem import Judger
 from rlcard.games.limitholdem import Round
+from rlcard.games.base import Card
 
 
 class LimitHoldemGame:
@@ -53,15 +54,12 @@ class LimitHoldemGame:
         self.round.raised = round['raised']
         self.round.player_folded = round['player_folded']
 
-        # TODO: ERROR:
-        # File "/workspaces/crypto-casino/server/rlcard/rlcard/games/limitholdem/game.py", line 59, in configure
-        # self.players[player.player_id].player_id = player.player_id
-        # AttributeError: 'dict' object has no attribute 'player_id' 
         for index, player in enumerate(players):
-            # self.players[player.player_id].hand = player.hand   
-            self.players[player.player_id].player_id = player.player_id   
-            self.players[player.player_id].status = PlayerStatus(player.status)   
-            self.players[player.player_id].in_chips = player.my_chips   
+            hs = player["hand"]
+            self.players[index].hand = [Card(hs[0][0], hs[0][1]), Card(hs[1][0], hs[1][1])]   
+            self.players[index].player_id = player["player_id"]   
+            self.players[index].status = PlayerStatus(player["status"])   
+            self.players[index].in_chips = player["my_chips"]   
 
     def init_game(self):
         """
