@@ -55,9 +55,10 @@ def updatePlayersSupa(game, players_db=None, game_uuid=None, update=False):
     players_data = []
     for index, player in enumerate(game.players):
         state = game.get_state(index)
+        print(f"PLAYER STATUS: {player.status}")
         data = {
             "player_id": player.player_id,
-            "status": player.status.value,
+            # "status": player.status.value,
             "game_uuid": game_uuid,
             "my_chips": state["my_chips"],
             "hand": state["hand"],
@@ -126,7 +127,6 @@ def getGame(game_id):
         }
     )
 
-
 @app.route("/game/limitholdem", methods=["PUT"])
 def updateGame():
     game_id = request.json["id"]
@@ -169,6 +169,65 @@ def updateGame():
         }
     )
 
+@app.route("/game/limitholdem/test", methods=["GET"])
+def testGame():
+    game_id = "e96e99a3-f982-4b4e-a102-e02083a05666"
+    game_data = (
+        supabase.table("limitholdem").select("*").eq("id", game_id).execute().data[0]
+    )
+    players_data = (
+        supabase.table("player").select("*").eq("game_uuid", game_id).execute().data
+    )
+    round_data = (
+        supabase.table("round").select("*").eq("game_uuid", game_id).execute().data[0]
+    )
+
+    game = Game(
+        num_players=game_data["num_players"],
+        random_seed=game_data["seed"],
+        small_blind=game_data["small_blind"],
+    )
+    game.init_game()
+    game.configure(
+        game=game_data,
+        players=players_data,
+        round=round_data,
+    )
+    
+    game_round_state = {}
+
+    # Pre-flop Round to get Flop
+    for index, player in enumerate(game.players):
+        print("Index: ", index)
+        if(index == game.num_players-1):
+            game.step("check")
+        else:
+            game.step("call")
+            # print("Index: ", index)
+        state = game.get_state(index)
+        print(f"Player {index}, Pre-flop Action Played")
+    game_round_state["Pre-flop"] = state
+    # Flop Round to get River
+    for index, player in enumerate(game.players):
+        # print("Index: ", index)
+        game.step("check")
+        state = game.get_state(index)
+        print(f"Player {index}, Flop Action Played")
+    game_round_state["Flop"] = state
+
+    # River round to get Turn
+    for index, player in enumerate(game.players):
+        print("Index: ", index)
+        if(index == 0):
+            game.step("raise")
+        else:
+            game.step("call")
+            # print("Index: ", index)
+        state = game.get_state(index)
+        print(f"Player {index}, River Action Played")
+    game_round_state["River"] = state
+
+    return jsonify(game_round_state)
 
 if __name__ == "__main__":
     print("RLCard Server starting...")

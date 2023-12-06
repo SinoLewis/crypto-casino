@@ -58,7 +58,7 @@ class LimitHoldemGame:
             hs = player["hand"]
             self.players[index].hand = [Card(hs[0][0], hs[0][1]), Card(hs[1][0], hs[1][1])]   
             self.players[index].player_id = player["player_id"]   
-            self.players[index].status = PlayerStatus(player["status"])   
+            # self.players[index].status = PlayerStatus(player["status"])   
             self.players[index].in_chips = player["my_chips"]   
 
     def init_game(self):
