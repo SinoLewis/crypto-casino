@@ -25,11 +25,8 @@
 
 1. Create Dynamic Socket client json parsed data for each game stored in a dictonary.
 2. Enumerate Casino production functonality from [floatinghotpot casino-server](https://github.com/floatinghotpot/casino-server)
-3. Patch functions to RlCard ws & Redis to Supabase
-    1. Assume every casino-server variables are needed for a normal functionality
-    2. Reduce the variables for rlcard integration
-    3. Patch new RlCard games from casino-server if need be
-    4. test new patched rl-card server  
+3. Patch functions to RlCard ws & Redis API's to Supabase API's
+    1. Test env for Redis & Supabase's API to match data types of Params & return
 
 - Future DEVs
 1. Each socket execution should runs on one game instance
@@ -39,3 +36,14 @@
 
 NB: REST DB Server Error
 - Cannot create a single instance of a game for one express server. Trying WebSockets
+
+### 2.2 RlCard Client
+
+> Svelte & React Apps
+
+1. Create a Test env for Jquery & Svelte
+2. Patch Jquery Client API's w/ Svelte API's
+    1. Svelte new funcs will use params: Events & HTML var Bindings API for jquery var DOM element
+    2. The new functions will be export for svelte components
+    3. Add Casino UI Compos
+3. Create a new reatc app from the new Svlete app

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="main.test.js"></script>
+</head>
+
+<body>
+
+    <button id="myButton">Click me</button>
+    <button id="twenty one">Wassup@</button>
+
+    <p>Test Me</p>
+
+    <ul>
+        <li id="Test-2">Shittin Me!!</li>
+        <li id="Asap-twenty-one">Vibez on Vibez!!</li>
+    </ul>
+    <script>
+        $(document).ready(function () {
+            $('button').click(function () {
+                // Inside the click event handler, $(this) refers to the clicked button
+                var buttonId = $(this).attr('id');
+                alert('Button ID: ' + buttonId);
+            });
+        });
+        // Use the imported functions in your script tag
+        document.addEventListener('DOMContentLoaded', function () {
+            // Example usage of testEvent
+            var element = document.getElementById('twenty one');
+            element.addEventListener('click', function (event) {
+                var result = testEvent(event);
+                console.log('Result of testEvent:', result);
+            });
+
+            // Example usage of testDom
+            var domResult = testDom();
+            console.log('Result of testDom:', domResult);
+        });
+    </script>
+
+</body>
+
+</html>
